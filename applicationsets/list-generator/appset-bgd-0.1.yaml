@@ -22,9 +22,15 @@ spec:
         automated:
           prune: true
           selfHeal: true
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            maxDuration: 3m0s
+            factor: 2
       source:
         repoURL: https://github.com/christianh814/gitops-examples
-        targetRevision: master
+        targetRevision: main
         path: applicationsets/list-generator/v0.1/overlays/{{cluster}}
       destination:
         server: '{{url}}'
